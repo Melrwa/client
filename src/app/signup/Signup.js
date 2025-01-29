@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -17,6 +16,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Check session on component mount
   useEffect(() => {
     const checkSession = async () => {
       try {
@@ -26,7 +26,7 @@ export default function Signup() {
         });
 
         if (res.ok) {
-          router.push("/homepage");
+          router.push("/homepage"); // Redirect if session is active
         }
       } catch (error) {
         console.log("No active session");
@@ -56,12 +56,26 @@ export default function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // Ensure cookies are sent
         body: JSON.stringify(form),
       });
 
       const data = await res.json();
       if (res.ok) {
-        router.push("/dashboard");
+        // Wait a bit to ensure session is recognized
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Check session after signup
+        const sessionRes = await fetch("/api/check_session", {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (sessionRes.ok) {
+          router.push("/homepage"); // Redirect to homepage
+        } else {
+          setError("Sign-up successful, but session not recognized.");
+        }
       } else {
         setError(data.message);
       }

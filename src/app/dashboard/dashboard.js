@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Checking session...");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -15,17 +15,16 @@ export default function Dashboard() {
           credentials: "include",
         });
 
-        if (res.ok) {
-          const data = await res.json();
-          setMessage(data.message || `Welcome, User ID: ${data.user_id}!`);
-        } else {
-          // Redirect to home if not authenticated
+        if (!res.ok) {
+          console.warn("User not authenticated. Redirecting...");
           throw new Error("Not authenticated");
         }
+
+        const data = await res.json();
+        setMessage(`Welcome, ${data.username || "User"}!`);
       } catch (error) {
         console.error("Session check failed:", error);
-        setMessage("Session expired or not authenticated. Redirecting to home...");
-        setTimeout(() => router.push("/homepage"), 2000);
+        handleRedirect();
       } finally {
         setLoading(false);
       }
@@ -34,12 +33,15 @@ export default function Dashboard() {
     checkSession();
   }, [router]);
 
+  const handleRedirect = () => {
+    setMessage("Session expired. Redirecting...");
+    setTimeout(() => router.push("/homepage"), 2000);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <h1 className="text-2xl text-gray-600 animate-pulse">
-          Checking your session...
-        </h1>
+        <h1 className="text-2xl text-gray-600 animate-pulse">{message}</h1>
       </div>
     );
   }
@@ -48,24 +50,19 @@ export default function Dashboard() {
     <div className="min-h-screen flex flex-col items-center justify-center space-y-6 bg-gray-50">
       <h1 className="text-3xl font-bold text-gray-800">{message}</h1>
       <div className="flex space-x-4">
-        <button
-          onClick={() => router.push("/profile")}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-        >
-          View Profile
-        </button>
-        <button
-          onClick={() => router.push("/settings")}
-          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-        >
-          Settings
-        </button>
-        <button
-          onClick={() => router.push("/logout")}
-          className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-        >
-          Logout
-        </button>
+        {[
+          { label: "View Profile", route: "/profile", color: "blue" },
+          { label: "Settings", route: "/settings", color: "green" },
+          { label: "Logout", route: "/logout", color: "red" },
+        ].map(({ label, route, color }) => (
+          <button
+            key={route}
+            onClick={() => router.push(route)}
+            className={`bg-${color}-600 text-white px-4 py-2 rounded-lg hover:bg-${color}-700 transition`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </div>
   );
