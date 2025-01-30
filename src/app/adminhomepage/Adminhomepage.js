@@ -25,7 +25,13 @@ export default function AdminHomePage() {
       {/* Sidebar Navigation */}
       <nav className="w-1/4 bg-[#800020] text-white p-6">
         <h1 className="text-2xl font-bold text-center mb-6">⚙️ Admin Panel</h1>
+
         <ul className="space-y-4">
+        <li>
+            <a href="/adminhomepage/register" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+            ➕ Add a Member
+            </a>
+          </li>
           <li>
             <a href="/adminhomepage/servicess" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               📋 Manage Services
@@ -37,12 +43,7 @@ export default function AdminHomePage() {
             </a>
           </li>
           <li>
-            <a href="/adminhomepage/deleteservice" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-              ❌ Delete Service
-            </a>
-          </li>
-          <li>
-            <a href="/adminhomepage/staff" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+            <a href="/adminhomepage/staffs" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               👨‍💼 Manage Staff
             </a>
           </li>
@@ -51,11 +52,8 @@ export default function AdminHomePage() {
               ➕ Add Staff
             </a>
           </li>
-          <li>
-            <a href="/adminhomepage/deletestaff" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-              ❌ Delete Staff
-            </a>
-          </li>
+
+
           <li>
             <a href="/adminhomepage/reviews" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               ⭐ View Reviews
