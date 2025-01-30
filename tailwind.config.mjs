@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        burgundy: "#800020",
+        // background: "var(--background)",
+        // foreground: "var(--foreground)",
       },
     },
   },

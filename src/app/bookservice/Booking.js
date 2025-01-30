@@ -5,3 +5,4 @@ export default function Booking() {
     <div>Booking</div>
   )
 }
+

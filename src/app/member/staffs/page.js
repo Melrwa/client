@@ -1,8 +1,10 @@
 import React from 'react'
-import Services from './services'
+import Staff from './Staff'
 
 export default function page() {
   return (
-    <div> <Services /></div>
+    <div>
+      <Staff />
+    </div>
   )
 }
