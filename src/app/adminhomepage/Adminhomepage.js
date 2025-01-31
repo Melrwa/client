@@ -32,6 +32,17 @@ export default function AdminHomePage() {
             ➕ Add a Member
             </a>
           </li>
+
+          <li>
+            <a href="/adminhomepage/transactions" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+              💳 Manage Transactions
+            </a>
+          </li>
+          <li>
+            <a href="/adminhomepage/addtransaction" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+              ➕ Add Transaction
+            </a>
+          </li>
           <li>
             <a href="/adminhomepage/servicess" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               📋 Manage Services
@@ -59,16 +70,8 @@ export default function AdminHomePage() {
               ⭐ View Reviews
             </a>
           </li>
-          <li>
-            <a href="/adminhomepage/transactions" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-              💳 Manage Transactions
-            </a>
-          </li>
-          <li>
-            <a href="/adminhomepage/addtransaction" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-              ➕ Add Transaction
-            </a>
-          </li>
+        
+
           <li>
             <a href="/adminhomepage/reports" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               📊 Generate Reports
