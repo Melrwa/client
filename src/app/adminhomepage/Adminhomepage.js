@@ -1,5 +1,3 @@
-
-
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,17 +5,30 @@ import { useEffect, useState } from "react";
 export default function AdminHomePage() {
   const router = useRouter();
   const [adminName, setAdminName] = useState("");
+  const [totalServices, setTotalServices] = useState(0);
+  const [totalStaff, setTotalStaff] = useState(0);
+  const [dailyRevenue, setDailyRevenue] = useState(0);
 
   useEffect(() => {
-    // Fetch the admin's username from localStorage (Replace with API check later)
+    // Fetch the admin's username from localStorage
     const username = localStorage.getItem("username");
-    const role = localStorage.getItem("role"); // Assuming role is stored
+    const role = localStorage.getItem("role");
 
     if (!username || role !== "admin") {
-      router.push("/login"); // Redirect non-admin users
+      router.push("/login");
     } else {
       setAdminName(username);
     }
+
+    // Fetch reports data (total services, total staff, and revenue)
+    fetch("http://127.0.0.1:5555/api/reports")
+      .then((res) => res.json())
+      .then((data) => {
+        setTotalServices(data.total_services || 0);
+        setTotalStaff(data.total_staff || 0);
+        setDailyRevenue(data.daily_revenue || 0);
+      })
+      .catch((err) => console.error("Error fetching reports:", err));
   }, [router]);
 
   return (
@@ -25,14 +36,12 @@ export default function AdminHomePage() {
       {/* Sidebar Navigation */}
       <nav className="w-1/4 bg-[#800020] text-white p-6">
         <h1 className="text-2xl font-bold text-center mb-6">⚙️ Admin Panel</h1>
-
         <ul className="space-y-4">
-        <li>
+          <li>
             <a href="/adminhomepage/register" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-            ➕ Add a Member
+              ➕ Add a Member
             </a>
           </li>
-
           <li>
             <a href="/adminhomepage/transactions" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               💳 Manage Transactions
@@ -63,15 +72,11 @@ export default function AdminHomePage() {
               ➕ Add Staff
             </a>
           </li>
-
-
           <li>
             <a href="/adminhomepage/reviews" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               ⭐ View Reviews
             </a>
           </li>
-        
-
           <li>
             <a href="/adminhomepage/reports" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               📊 Generate Reports
@@ -101,15 +106,15 @@ export default function AdminHomePage() {
         <div className="grid grid-cols-3 gap-6 mt-6">
           <div className="p-6 bg-white rounded shadow">
             <h3 className="text-xl font-bold text-[#800020]">💆 Total Services</h3>
-            <p className="text-2xl">12</p> {/* Dynamic later */}
+            <p className="text-2xl">{totalServices}</p>
           </div>
           <div className="p-6 bg-white rounded shadow">
             <h3 className="text-xl font-bold text-[#800020]">👨‍💼 Total Staff</h3>
-            <p className="text-2xl">8</p> {/* Dynamic later */}
+            <p className="text-2xl">{totalStaff}</p>
           </div>
           <div className="p-6 bg-white rounded shadow">
             <h3 className="text-xl font-bold text-[#800020]">💰 Today's Transactions</h3>
-            <p className="text-2xl">$250</p> {/* Dynamic later */}
+            <p className="text-2xl">${dailyRevenue}</p>
           </div>
         </div>
       </main>
