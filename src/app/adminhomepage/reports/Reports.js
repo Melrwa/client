@@ -34,11 +34,15 @@ export default function ReportsDashboard() {
 
     if (loading) {
         return (
-            <div className="bg-[#800020] min-h-screen p-6 text-white text-center">
-                <h2 className="text-3xl font-bold mb-6">Loading Reports...</h2>
+          <div className="flex justify-center items-center h-screen bg-[#800020]">
+            <div className="flex space-x-2">
+              <div className="w-5 h-5 bg-red-300 rounded-full animate-bounce"></div>
+              <div className="w-5 h-5 bg-red-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+              <div className="w-5 h-5 bg-red-700 rounded-full animate-bounce [animation-delay:0.4s]"></div>
             </div>
+          </div>
         );
-    }
+      }
 
     return (
         <div className="bg-[#800020] min-h-screen p-6 text-white">

@@ -48,6 +48,17 @@ export default function Login() {
       setLoading(false);
     }
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-[#800020]">
+        <div className="flex space-x-2">
+          <div className="w-5 h-5 bg-red-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-red-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+          <div className="w-5 h-5 bg-red-700 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#800020] p-6 text-white">

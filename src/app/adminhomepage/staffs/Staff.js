@@ -48,8 +48,12 @@ export default function Staff() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-red-900 text-white">
-        <h1 className="text-2xl animate-pulse">Loading staff...</h1>
+      <div className="flex justify-center items-center h-screen bg-[#800020]">
+        <div className="flex space-x-2">
+          <div className="w-5 h-5 bg-red-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-red-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+          <div className="w-5 h-5 bg-red-700 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+        </div>
       </div>
     );
   }

@@ -20,6 +20,7 @@ export default function TransactionsList() {
 
       // Calculate total amount paid
       const totalAmount = transactions.reduce((sum, transaction) => sum + transaction.amount_paid, 0);
+    
 
       return (
           <div className="bg-[#800020] min-h-screen p-6 text-white flex flex-col items-center">
