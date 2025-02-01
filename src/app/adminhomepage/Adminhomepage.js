@@ -37,6 +37,12 @@ export default function AdminHomePage() {
       <nav className="w-1/4 bg-[#800020] text-white p-6">
         <h1 className="text-2xl font-bold text-center mb-6">⚙️ Admin Panel</h1>
         <ul className="space-y-4">
+
+        <li>
+            <a href="/adminhomepage/allmembers" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+              💳 Manage Members
+            </a>
+          </li>
           <li>
             <a href="/adminhomepage/register" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               ➕ Add a Member
