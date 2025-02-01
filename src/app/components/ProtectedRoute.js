@@ -13,12 +13,12 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
       const user = await checkSession();
 
       if (!user) {
-        router.replace("/login"); // Redirect if not logged in
+        router.replace("/login"); 
         return;
       }
 
       if (adminOnly && user.role !== "admin") {
-        router.replace("/memberhomepage"); // FIXED: Redirect user (not "member")
+        router.replace("/memberhomepage"); 
         return;
       }
 
@@ -28,7 +28,18 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
     verifyAccess().finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+ 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-[#800020]">
+        <div className="flex space-x-2">
+          <div className="w-5 h-5 bg-red-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-red-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+          <div className="w-5 h-5 bg-red-700 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+        </div>
+      </div>
+    );
+  }
 
   return authorized ? children : null;
 }
