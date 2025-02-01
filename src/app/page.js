@@ -72,44 +72,13 @@ export default function HomePage() {
 
             />
 
-
-
             <img
               src="https://res.cloudinary.com/dmnytetf0/image/upload/v1738380251/85e4c3348828f78df779b9b38235b7d8_zykbnj.jpg"
               alt="Slide 6"
               className="w-full h-full object-cover"
 
             />
-             <img
-              src="https://res.cloudinary.com/dmnytetf0/image/upload/v1738379980/hot-rocks-massage-horz-1024x768_dd3dlk.jpg"
-              alt="Slide 6"
-              className="w-full h-full object-cover"
-
-            />
-
-            <img
-              src="https://res.cloudinary.com/dmnytetf0/image/upload/v1738382544/pony-styles-2_1600x_kibadz.jpg"
-              alt="Slide 6"
-              className="w-full h-full object-cover"
-
-            />
-
-            <img
-              src="https://res.cloudinary.com/dmnytetf0/image/upload/v1738380260/a67ae21c-efce-4376-a918-e9f3c7dc19b6.26b29763eb02a860b8404439c520fe08_ljvjpz.jpg"
-              alt="Slide 6"
-              className="w-full h-full object-cover"
-
-            />
-
-
-          
-          
-
-
-
-
-
-
+            
 
           </div>
         </div>
