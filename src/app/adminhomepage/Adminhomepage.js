@@ -40,7 +40,7 @@ export default function AdminHomePage() {
 
         <li>
             <a href="/adminhomepage/allmembers" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
-              💳 Manage Members
+            👥 Manage Members
             </a>
           </li>
           <li>
