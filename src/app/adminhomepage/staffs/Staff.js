@@ -5,6 +5,8 @@ export default function Staff() {
   const [staff, setStaff] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editing, setEditing] = useState(null); // Track which staff is being edited
+  const [editData, setEditData] = useState({ name: "", picture: "", gender: "", role: "" });
 
   useEffect(() => {
     const fetchStaff = async () => {
@@ -39,8 +41,39 @@ export default function Staff() {
         throw new Error("Failed to delete staff member");
       }
 
-      // Optimistic UI update: Remove staff member from state
       setStaff((prevStaff) => prevStaff.filter((s) => s.id !== id));
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleEdit = (staff) => {
+    setEditing(staff.id);
+    setEditData({ name: staff.name, picture: staff.picture, gender: staff.gender, role: staff.role });
+  };
+
+  const handleSaveEdit = async (id) => {
+    try {
+      const res = await fetch(`/api/staff/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update staff details");
+      }
+
+      const updatedStaff = await res.json();
+
+      // Update state with new staff details
+      setStaff((prevStaff) =>
+        prevStaff.map((s) => (s.id === id ? { ...s, ...updatedStaff.staff } : s))
+      );
+
+      setEditing(null); // Exit edit mode
     } catch (err) {
       alert(err.message);
     }
@@ -75,30 +108,56 @@ export default function Staff() {
             key={staff.id}
             className="bg-red-900 rounded-2xl shadow-lg flex flex-col items-center p-4"
           >
-            {/* Staff Image */}
             <img
               src={staff.picture || "/default-avatar.png"}
               alt={staff.name}
               className="w-full rounded-2xl aspect-[4/3] object-cover"
             />
 
-            {/* Staff Details */}
             <div className="w-full p-4 text-center">
-              <h2 className="text-xl font-semibold">{staff.name}</h2>
-              <p className="text-gray-300 capitalize">
-                Gender: {staff.gender || "Not specified"}
-              </p>
-              <p className="text-gray-300 capitalize">
-                Role: {staff.role || "Not specified"}
-              </p>
-
-              {/* Delete Button */}
-              <button
-                onClick={() => handleDelete(staff.id)}
-                className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-              >
-                Delete
-              </button>
+              {editing === staff.id ? (
+                <>
+                  <input
+                    type="text"
+                    value={editData.name}
+                    onChange={(e) => setEditData({ ...editData, name: e.target.value })}
+                    className="w-full mb-2 p-2 text-black rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editData.picture}
+                    onChange={(e) => setEditData({ ...editData, picture: e.target.value })}
+                    className="w-full mb-2 p-2 text-black rounded"
+                  />
+                  <select
+                    value={editData.gender}
+                    onChange={(e) => setEditData({ ...editData, gender: e.target.value })}
+                    className="w-full mb-2 p-2 text-black rounded"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <select
+                    value={editData.role}
+                    onChange={(e) => setEditData({ ...editData, role: e.target.value })}
+                    className="w-full mb-2 p-2 text-black rounded"
+                  >
+                    <option value="stylist">Stylist</option>
+                    <option value="barber">Barber</option>
+                    <option value="spa_therapist">Spa Therapist</option>
+                  </select>
+                  <button onClick={() => handleSaveEdit(staff.id)} className="bg-green-500 p-2 rounded">Save</button>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl font-semibold">{staff.name}</h2>
+                  <p>Gender: {staff.gender}</p>
+                  <p>Role: {staff.role}</p>
+                  <button onClick={() => handleEdit(staff)} className="bg-blue-500 p-2 rounded">Edit</button>
+                  <button onClick={() => handleDelete(staff.id)} className="bg-red-600 p-2 rounded">Delete</button>
+                </>
+              )}
             </div>
           </div>
         ))}
