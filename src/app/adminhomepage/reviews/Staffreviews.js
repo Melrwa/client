@@ -5,7 +5,7 @@ export default function StaffReviews() {
     const [staffReviews, setStaffReviews] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5555/api/staff/reviews")
+        fetch("/api/staff/reviews")
             .then((res) => res.json())
             .then((data) => setStaffReviews(data))
             .catch((err) => console.error("Error fetching staff reviews:", err));

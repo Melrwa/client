@@ -13,7 +13,7 @@ export default function ReportsDashboard() {
     const [loading, setLoading] = useState(true);  // Track loading state
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5555/api/reports")
+        fetch("/api/reports")
             .then((res) => res.json())
             .then((data) => {
                 console.log("API Response:", data);

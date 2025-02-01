@@ -1,10 +1,11 @@
-import React from 'react'
-import AdminHomepage from './Adminhomepage'
 
-export default function pages() {
+import Adminhomepage from "./Adminhomepage";
+import ProtectedRoute from "@/app/components/ProtectedRoute";
+
+export default function AdminPage() {
   return (
-    <div>
-        <AdminHomepage />
-    </div>
-  )
+    <ProtectedRoute adminOnly={true}>
+      <Adminhomepage />
+    </ProtectedRoute>
+  );
 }

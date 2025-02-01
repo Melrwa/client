@@ -21,7 +21,7 @@ export default function AdminHomePage() {
     }
 
     // Fetch reports data (total services, total staff, and revenue)
-    fetch("http://127.0.0.1:5555/api/reports")
+    fetch("/api/reports")
       .then((res) => res.json())
       .then((data) => {
         setTotalServices(data.total_services || 0);
@@ -83,16 +83,36 @@ export default function AdminHomePage() {
             </a>
           </li>
           <li>
-            <button 
-              className="w-full py-2 px-4 bg-gray-800 rounded hover:bg-gray-700 mt-6"
-              onClick={() => {
+          <button 
+          className="w-full py-2 px-4 bg-gray-800 rounded hover:bg-gray-700 mt-6"
+          onClick={async () => {
+            try {
+              const response = await fetch("api/logout", {
+                method: "POST",
+                credentials: "include", // Ensures cookies are sent with the request
+                headers: { "Content-Type": "application/json" },
+              });
+
+              if (response.ok) {
+                const data = await response.json();
+                console.log(data.message); // Logs "Logout successful"
+                
+                // Remove user details from local storage
                 localStorage.removeItem("username");
                 localStorage.removeItem("role");
+
+                // Redirect to login page
                 router.push("/login");
-              }}
-            >
-              🚪 Logout
-            </button>
+              } else {
+                console.error("Logout failed");
+              }
+            } catch (error) {
+              console.error("Error during logout:", error);
+            }
+          }}
+        >
+          🚪 Logout
+        </button>
           </li>
         </ul>
       </nav>
