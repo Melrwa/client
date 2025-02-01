@@ -31,10 +31,10 @@ export default function Login() {
         localStorage.setItem("username", data.username);
         localStorage.setItem("role", data.role);
 
-        // 🛠 FIXED: Redirecting based on "user" instead of "member"
+        // Redirecting based on "user" instead of "member"
         if (data.role === "admin") {
           router.replace("/adminhomepage");
-        } else if (data.role === "user") { // <-- FIXED this check!
+        } else if (data.role === "user") { 
           router.replace("/memberhomepage");
         } else {
           setError("Invalid role detected.");
