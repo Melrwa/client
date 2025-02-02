@@ -129,7 +129,7 @@ export default function Booking() {
 
               {/* Book Button */}
               <button
-                className="mt-4 px-4 py-2 bg-white text-red-900 rounded-md hover:bg-red-700 hover:text-white"
+                className="mt-4 px-4 py-2 bg-green-600 text-red-900 rounded-md hover:bg-red-700 hover:text-white"
                 onClick={() => handleBookClick(service)}
               >
                 Book

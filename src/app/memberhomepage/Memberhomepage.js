@@ -59,7 +59,6 @@ export default function MemberHomepage() {
         <ul className="space-y-4">
           <li><Link href="/memberhomepage" className="block hover:text-gray-300">🏠 Home</Link></li>
           <li><Link href="/memberhomepage/bookservice" className="block hover:text-gray-300">📅 Book Service</Link></li>
-          <li><Link href="/servicess" className="block hover:text-gray-300">💆 All Services</Link></li>
           <li><Link href="/memberhomepage/staffs" className="block hover:text-gray-300">👨‍⚕️ Our Staffs</Link></li>
         </ul>
         <div className="mt-auto">
