@@ -84,6 +84,11 @@ export default function AdminHomePage() {
             </a>
           </li>
           <li>
+            <a href="/adminhomepage/bookings" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
+              📅 Bookings
+            </a>
+          </li>
+          <li>
             <a href="/adminhomepage/reports" className="block py-2 px-4 bg-red-700 rounded hover:bg-red-600">
               📊 Generate Reports
             </a>
