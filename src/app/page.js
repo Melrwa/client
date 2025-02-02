@@ -112,7 +112,7 @@ export default function HomePage() {
       <section id="about" className="py-16 bg-[#800020] text-center text-white">
         <h2 className="text-3xl font-bold mb-4 text-red-700">About Us</h2>
         <p className="text-red-300 max-w-4xl mx-auto text-2xl">
-          At BeautyShop, we offer a variety of salon and spa services, including hair plaiting, barber shop features, and more.
+          At Angelic BeautyShop, we offer a variety of salon and spa services, including hair plaiting, barber shop features, and more.
           Our experienced staff ensures you have the best experience.
         </p>
       </section>
