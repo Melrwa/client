@@ -6,7 +6,23 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Import icons for menu
 
 export default function MemberHomepage() {
-  const images = ["/images/spa1.jpg", "/images/spa2.jpg", "/images/spa3.jpg"];
+  const images = [
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738382545/space-bun-and-bangs_ugfrzx.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738382544/61qkKnEFNlL._AC_UF1000_1000_QL80__juhd85.jpg", 
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738380259/2d4f9096e75d899bc596822f88f09d0b_wmezx7.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738380252/ff992ce09b188f889b6f4a89a504d23a_qlhdwc.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738379980/SNI_SpaServiceCategories_FACIALS-1024x768_aximgm.jpg", 
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738379980/hot-rocks-massage-horz-1024x768_dd3dlk.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1738382545/67ca27e22eda7b1b1199558655d6ac08_yeu0sn.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1737975635/Curly-Afro-Prom-Hairstylee_atjead.jpg", 
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1737975641/natural-hairstyles-for-black-girls-1920x1080_hjywx2.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1737975036/df39751429b14fc78a27cee0b21c2802_nxnd7y.jpg",
+    "https://res.cloudinary.com/dmnytetf0/image/upload/v1737975640/stunning-waves-and-curls-on-a-black-pixie-cut_sn1crq.jpg"
+    
+  
+  
+  
+  ];
   const [currentImage, setCurrentImage] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Controls sidebar visibility
@@ -54,19 +70,18 @@ export default function MemberHomepage() {
   return (
     <div className="flex min-h-screen bg-[#800020] text-white relative">
       {/* Sidebar */}
-      <aside className={`bg-red-900 p-6 h-screen fixed ${isSidebarOpen ? "w-64" : "w-0"} overflow-hidden transition-all duration-300`}>
-        <h1 className="text-2xl font-bold mb-6">Angelic Beauty & Spa</h1>
-        <ul className="space-y-4">
+      <aside className={`bg-red-900 h-screen fixed top-0 left-0 p-6 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-0"} overflow-hidden`}>
+        <h1 className="text-xl font-bold mb-6 pl-8 transition-opacity duration-300">
+          Angelic Beauty & Spa
+        </h1>
+        <ul className="space-y-4 pl-8">
           <li><Link href="/memberhomepage" className="block hover:text-gray-300">🏠 Home</Link></li>
           <li><Link href="/memberhomepage/bookservice" className="block hover:text-gray-300">📅 Book Service</Link></li>
           <li><Link href="/memberhomepage/staffs" className="block hover:text-gray-300">👨‍⚕️ Our Staffs</Link></li>
         </ul>
-        <div className="mt-auto">
+        <div className="mt-auto pl-8">
           {isLoggedIn ? (
-            <button
-              className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 w-full mt-6"
-              onClick={handleLogout}
-            >
+            <button className="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 w-full mt-6" onClick={handleLogout}>
               🚪 Logout
             </button>
           ) : (
@@ -77,7 +92,7 @@ export default function MemberHomepage() {
 
       {/* Hamburger Icon (Fixed at top left) */}
       <button
-        className="absolute top-4 left-4 bg-gray-800 p-2 rounded z-50"
+        className="absolute top-1 left-4 bg-red-700 p-2 rounded z-50"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,7 +108,7 @@ export default function MemberHomepage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 4 }}
         />
       </div>
     </div>
