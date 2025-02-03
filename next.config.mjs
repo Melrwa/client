@@ -5,7 +5,7 @@ const nextConfig = {
       return [
         {
           source: "/api/:path*", // Proxy all requests starting with /api
-          destination: "http://127.0.0.1:5555/:path*", // Replace with your Flask API base URL
+          destination: "http://127.0.0.1:10000/:path*", // Replace with your Flask API base URL
         },
       ];
     },
