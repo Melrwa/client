@@ -58,6 +58,7 @@ export default function Staff() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+           "Authorization": "Bearer your_jwt_token"
         },
         body: JSON.stringify(editData),
       });
@@ -154,7 +155,7 @@ export default function Staff() {
                   <h2 className="text-xl font-semibold">{staff.name}</h2>
                   <p>Gender: {staff.gender}</p>
                   <p>Role: {staff.role}</p>
-                  <button onClick={() => handleEdit(staff)} className="bg-green-500  p-2 rounded">Edit</button>
+                  {/* <button onClick={() => handleEdit(staff)} className="bg-green-500  p-2 rounded">Edit</button> */}
                   <button onClick={() => handleDelete(staff.id)} className="bg-red-600 p-2 rounded">Delete</button>
                 </>
               )}

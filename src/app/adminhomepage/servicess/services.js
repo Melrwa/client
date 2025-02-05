@@ -34,6 +34,11 @@ export default function Services() {
     try {
       const res = await fetch(`/api/services/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer your_jwt_token"
+        },
+        body: JSON.stringify({ key: "value" })
       });
 
       if (!res.ok) {
@@ -70,6 +75,7 @@ export default function Services() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+           
         },
         body: JSON.stringify({ price: parseFloat(newPrice) }),
       });
